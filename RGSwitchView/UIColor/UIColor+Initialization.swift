@@ -1,20 +1,36 @@
 //
-//  UIColor+RGBring.swift
-//  RGClass
+//  UIColor+Initialization.swift
+//  RGUIExtension
 //
-//  Created by RAIN on 15/9/8.
+//  Created by RAIN on 15/11/30.
 //  Copyright © 2015年 Smartech. All rights reserved.
 //
 
 import UIKit
 
 extension UIColor {
-    /// 设置颜色(十进制 - RGB: 0 ~ 255, alpha: 0 ~ 1)
+    /**
+     通过指定的不透明度和 RGB 分量值, 初始化并返回一个颜色对象
+     
+     - parameter Red:   红色分量的值 (0 ~ 255)
+     - parameter Green: 绿色分量的值 (0 ~ 255)
+     - parameter Blue:  蓝色分量的值 (0 ~ 255)
+     - parameter Alpha: 不透明度的值 (0 ~ 1)
+     
+     - returns: 被初始化的颜色
+     */
     public convenience init(Red: CGFloat, Green: CGFloat, Blue: CGFloat, alpha: CGFloat) {
         self.init(red: Red / 255.0, green: Green / 255.0, blue: Blue / 255.0, alpha: alpha)
     }
     
-    /// 设置颜色(16进制 - alpha: 0 ~ 1)
+    /**
+     通过指定的不透明度 和 一个用16进制数字表示 RGB 分量值的字符串, 初始化并返回一个颜色对象
+     
+     - parameter hexString: 以"#"或"0x"开头, 后面跟随6位(或3位)16进制数字 表示RGB分量值的字符串
+     - parameter alpha:     不透明度 (0 ~ 1)
+     
+     - returns: 被初始化的颜色
+     */
     public convenience init(hexString: String, alpha: CGFloat) {
         var red:   CGFloat = 0.0
         var green: CGFloat = 0.0

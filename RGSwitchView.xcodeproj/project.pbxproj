@@ -12,12 +12,12 @@
 		B76A58AF1BC6447300C9ACDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B76A58AD1BC6447300C9ACDC /* Main.storyboard */; };
 		B76A58B11BC6447300C9ACDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B76A58B01BC6447300C9ACDC /* Assets.xcassets */; };
 		B76A58B41BC6447300C9ACDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B76A58B21BC6447300C9ACDC /* LaunchScreen.storyboard */; };
-		B76A58BF1BC6451A00C9ACDC /* RGSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76A58BE1BC6451A00C9ACDC /* RGSwitchView.swift */; settings = {ASSET_TAGS = (); }; };
-		B7EC74461BC7A24000A5865B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC74451BC7A24000A5865B /* DetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B7EC74491BC7A35200A5865B /* UIColor+RGBring.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC74481BC7A35200A5865B /* UIColor+RGBring.swift */; settings = {ASSET_TAGS = (); }; };
-		B7EC744E1BC7A44F00A5865B /* icon_rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EC744B1BC7A44F00A5865B /* icon_rightarrow.png */; settings = {ASSET_TAGS = (); }; };
-		B7EC744F1BC7A44F00A5865B /* icon_rightarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EC744C1BC7A44F00A5865B /* icon_rightarrow@2x.png */; settings = {ASSET_TAGS = (); }; };
-		B7EC74501BC7A44F00A5865B /* red_line_and_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EC744D1BC7A44F00A5865B /* red_line_and_shadow@2x.png */; settings = {ASSET_TAGS = (); }; };
+		B76A58BF1BC6451A00C9ACDC /* RGSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76A58BE1BC6451A00C9ACDC /* RGSwitchView.swift */; };
+		B7EC74461BC7A24000A5865B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC74451BC7A24000A5865B /* DetailViewController.swift */; };
+		B7EC74491BC7A35200A5865B /* UIColor+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC74481BC7A35200A5865B /* UIColor+Initialization.swift */; };
+		B7EC744E1BC7A44F00A5865B /* icon_rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EC744B1BC7A44F00A5865B /* icon_rightarrow.png */; };
+		B7EC744F1BC7A44F00A5865B /* icon_rightarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EC744C1BC7A44F00A5865B /* icon_rightarrow@2x.png */; };
+		B7EC74501BC7A44F00A5865B /* red_line_and_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7EC744D1BC7A44F00A5865B /* red_line_and_shadow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,7 @@
 		B76A58B51BC6447300C9ACDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B76A58BE1BC6451A00C9ACDC /* RGSwitchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RGSwitchView.swift; path = RGSwitchView/RGSwitchView.swift; sourceTree = "<group>"; };
 		B7EC74451BC7A24000A5865B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		B7EC74481BC7A35200A5865B /* UIColor+RGBring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RGBring.swift"; sourceTree = "<group>"; };
+		B7EC74481BC7A35200A5865B /* UIColor+Initialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Initialization.swift"; sourceTree = "<group>"; };
 		B7EC744B1BC7A44F00A5865B /* icon_rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_rightarrow.png; sourceTree = "<group>"; };
 		B7EC744C1BC7A44F00A5865B /* icon_rightarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_rightarrow@2x.png"; sourceTree = "<group>"; };
 		B7EC744D1BC7A44F00A5865B /* red_line_and_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red_line_and_shadow@2x.png"; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		B7EC74471BC7A35200A5865B /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				B7EC74481BC7A35200A5865B /* UIColor+RGBring.swift */,
+				B7EC74481BC7A35200A5865B /* UIColor+Initialization.swift */,
 			);
 			path = UIColor;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 				B76A58BF1BC6451A00C9ACDC /* RGSwitchView.swift in Sources */,
 				B76A58AA1BC6447300C9ACDC /* AppDelegate.swift in Sources */,
 				B7EC74461BC7A24000A5865B /* DetailViewController.swift in Sources */,
-				B7EC74491BC7A35200A5865B /* UIColor+RGBring.swift in Sources */,
+				B7EC74491BC7A35200A5865B /* UIColor+Initialization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
