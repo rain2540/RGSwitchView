@@ -18,53 +18,46 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
 //  MARK: RGSwitchViewDelegate
 @objc protocol RGSwitchViewDelegate {
     /**
-    顶部Tab个数
-    
-    - parameter view: 本控件
-    
-    - returns: Tab个数
-    */
+     顶部Tab个数
+     
+     - parameter view: 本控件
+     
+     - returns: Tab个数
+     */
     func numberOfTab(view: RGSwitchView) -> Int
     
     /**
-    每个Tab所属的ViewController
-    
-    - parameter view: 本控件
-    - parameter tabNumber: Tab索引
-    
-    - returns: 每个Tab对应的ViewController
-    */
+     每个Tab所对应的ViewController
+     
+     - parameter view:      本控件
+     - parameter tabNumber: Tab索引
+     
+     - returns: 每个Tab对应的ViewController
+     */
     func switchView(view: RGSwitchView, viewOfTab tabNumber: Int) -> UIViewController
     
-    
     /**
-    滑动左边界时传递手势
-    
-    - parameter view: 本控件
-    - parameter panLeftEdge: 手势
-    
-    - returns: nil
-    */
+     滑动左边界时传递手势
+     
+     - parameter view:        本控件
+     - parameter panLeftEdge: 手势
+     */
     optional func switchView(view: RGSwitchView, panLeftEdge: UIPanGestureRecognizer)
     
     /**
-    滑动右边界时传递手势
-    
-    - parameter view: 本控件
-    - parameter panRightEdge: 手势
-    
-    - returns: nil
-    */
+     滑动右边界时传递手势
+     
+     - parameter view:         本控件
+     - parameter panRightEdge: 手势
+     */
     optional func switchView(view: RGSwitchView, panRightEdge: UIPanGestureRecognizer)
     
     /**
-    点击Tab
-    
-    - parameter view: 本控件
-    - parameter tabNumber: Tab索引
-    
-    - returns: nil
-    */
+     点击Tab
+     
+     - parameter view:      本控件
+     - parameter tabNumber: Tab索引
+     */
     optional func switchView(view: RGSwitchView, didSelectTab tabNumber: Int)
 }
 
