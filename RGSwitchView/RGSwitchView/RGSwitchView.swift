@@ -103,7 +103,7 @@ class RGSwitchView: UIView {
             addSubview(self.leftSideButton)
         }
     }
-    
+
     private lazy var rootScrollView = UIScrollView()    //  主视图
     private lazy var topScrollView = UIScrollView()     //  顶部页签视图
     private lazy var rightSideButton = UIButton()       //  右侧按钮
@@ -116,7 +116,7 @@ class RGSwitchView: UIView {
     
     private lazy var userSelectedChannelID = 100        //  点击按钮选择名字ID
     
-    private lazy var viewArray = [UIViewController]()   //  主视图的子视图数组
+    private lazy var viewArray: [UIViewController] = [] //  主视图的子视图数组
     
     //  MARK: ＊＊ Methods ＊＊
     //  MARK: Lifecycle
@@ -161,13 +161,13 @@ class RGSwitchView: UIView {
     override func layoutSubviews() {
         //  如果有设置右侧视图，缩小顶部滚动视图的宽度以适应按钮
         if isBuildUI {
-            if rightTopButton.bounds.size.width > 0 {
-                rightTopButton.frame = CGRect(x: bounds.size.width - rightTopButton.bounds.size.width, y: 0,
+            if rightTopButton.bounds.width > 0 && leftTopButton.bounds.width == 0 {
+                rightTopButton.frame = CGRect(x: bounds.size.width - rightTopButton.bounds.width, y: 0,
                     width: rightTopButton.bounds.width, height: topScrollView.bounds.height)
                 
                 topScrollView.frame = CGRect(x: 0, y: 0,
                     width: bounds.size.width - rightTopButton.bounds.size.width, height: kHeightOfTopScrollView)
-            } else if leftTopButton.bounds.width > 0 {
+            } else if leftTopButton.bounds.width > 0 && rightTopButton.bounds.width == 0 {
                 leftTopButton.frame = CGRect(x: kWidthOfLeftMargin, y: 0,
                     width: leftTopButton.bounds.width, height: topScrollView.bounds.height)
                 
