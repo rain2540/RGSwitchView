@@ -203,7 +203,7 @@ class RGSwitchView: UIView {
         }
     }
     
-    //  创建子视图UI
+    ///  创建子视图UI
     func buildUI() {
         let number = delegate?.numberOfTab(self)
         if let number = number {
