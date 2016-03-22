@@ -133,6 +133,7 @@
 		B76A589E1BC6447300C9ACDC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Smartech;
 				TargetAttributes = {

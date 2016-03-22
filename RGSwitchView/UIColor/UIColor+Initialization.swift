@@ -61,13 +61,13 @@ extension UIColor {
                     blue  = CGFloat(hexValue & 0x0000FF)           / 255.0
                     
                 default:
-                    print("Invalid RGB hex string, number of characters after '#' or '0x' should be either 3 or 6.")
+                    print("Invalid RGB hex string, number of characters after '#' or '0x' should be either 3 or 6.", terminator: "")
                 }
             } else {
-                print("Scan hex error.")
+                print("Scan hex error.", terminator: "")
             }
         } else {
-            print("Invalid RGB hex string, missing '#' or '0x' as prefix.")
+            print("Invalid RGB hex string, missing '#' or '0x' as prefix.", terminator: "")
         }
         
         self.init(red: red, green: green, blue: blue, alpha: alpha)

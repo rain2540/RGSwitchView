@@ -25,7 +25,7 @@ class DemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if respondsToSelector("edgesForExtendedLayout") {
+        if respondsToSelector(Selector("edgesForExtendedLayout")) {
             edgesForExtendedLayout = .None
         }
         

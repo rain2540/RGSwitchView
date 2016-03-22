@@ -69,6 +69,7 @@ class RGSwitchView: UIView {
     lazy var shadowImageView = UIImageView()
     lazy var shadowImage = UIImage()
     
+    lazy var topScrollViewBackgroundColor = UIColor()       //  顶部滑动视图背景色
     lazy var tabItemNormalColor = UIColor()                 //  正常时tab文字颜色
     lazy var tabItemSelectedColor = UIColor()               //  选中时tab文字颜色
     lazy var tabItemNormalBackgroundImage = UIImage()       //  正常时tab的背景
@@ -129,7 +130,7 @@ class RGSwitchView: UIView {
         super.init(frame: frame)
         initValues()
     }
-    
+
     private func initValues() {
         //  创建顶部可滑动的Tab
         topScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: kHeightOfTopScrollView))
@@ -151,7 +152,7 @@ class RGSwitchView: UIView {
         rootScrollView.showsHorizontalScrollIndicator = false
         rootScrollView.showsVerticalScrollIndicator = false
         rootScrollView.autoresizingMask = [.FlexibleHeight, .FlexibleBottomMargin, .FlexibleWidth]
-        rootScrollView.panGestureRecognizer.addTarget(self, action: "scrollHandlePan:")
+        rootScrollView.panGestureRecognizer.addTarget(self, action: #selector(RGSwitchView.scrollHandlePan(_:)))
         addSubview(rootScrollView)
         
         viewArray = [UIViewController]()
@@ -161,6 +162,7 @@ class RGSwitchView: UIView {
     override func layoutSubviews() {
         //  如果有设置右侧视图，缩小顶部滚动视图的宽度以适应按钮
         if isBuildUI {
+            topScrollView.backgroundColor = topScrollViewBackgroundColor
             if rightTopButton.bounds.width > 0 && leftTopButton.bounds.width == 0 {
                 rightTopButton.frame = CGRect(x: bounds.size.width - rightTopButton.bounds.width, y: 0,
                     width: rightTopButton.bounds.width, height: topScrollView.bounds.height)
@@ -213,7 +215,7 @@ class RGSwitchView: UIView {
                 rootScrollView.addSubview((viewController?.view)!)
             }
         } else {
-            print("RGSwitchView Error: number in buildUI is nil")
+            print("RGSwitchView Error: number in buildUI is nil", terminator: "")
         }
         createNameButtons()
         
@@ -221,7 +223,7 @@ class RGSwitchView: UIView {
         if let delegate = delegate {
             delegate.switchView?(self, didSelectTab: userSelectedChannelID - 100)
         } else {
-            print("delegate in RGSwitchView is nil")
+            print("delegate in RGSwitchView is nil", terminator: "")
         }
         
         isBuildUI = true
@@ -268,7 +270,7 @@ class RGSwitchView: UIView {
             button.setTitleColor(tabItemSelectedColor, forState: .Selected)
             button.setBackgroundImage(tabItemNormalBackgroundImage, forState: .Normal)
             button.setBackgroundImage(tabItemSelectedBackgroundImage, forState: .Selected)
-            button.addTarget(self, action: "selectNameButton:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(RGSwitchView.selectNameButton(_:)), forControlEvents: .TouchUpInside)
             topScrollView.addSubview(button)
         }
         
@@ -307,10 +309,10 @@ class RGSwitchView: UIView {
                         self.isRootScroll = false
                         
                         if let delegate = self.delegate {
-                            if (delegate as! UIViewController).respondsToSelector("switchView:didselectTab:") {}
+                            if (delegate as! UIViewController).respondsToSelector(#selector(RGSwitchViewDelegate.switchView(_:didSelectTab:))) {}
                             delegate.switchView?(self, didSelectTab: self.userSelectedChannelID - 100)
                         } else {
-                            print("delegate in RGSwitchView is nil")
+                            print("delegate in RGSwitchView is nil", terminator: "")
                         }
                         
                     }
@@ -338,11 +340,11 @@ class RGSwitchView: UIView {
     //  MARK: Main view logic method
     @objc private func scrollHandlePan(panParam: UIPanGestureRecognizer) {
         if rootScrollView.contentOffset.x <= 0 {
-            if delegate != nil && (delegate as! UIViewController).respondsToSelector("switchView:panLeftEdge:") {
+            if delegate != nil && (delegate as! UIViewController).respondsToSelector(#selector(RGSwitchViewDelegate.switchView(_:panLeftEdge:))) {
                 delegate?.switchView!(self, panLeftEdge: panParam)
             }
         } else if rootScrollView.contentOffset.x >= rootScrollView.contentSize.width - rootScrollView.bounds.width {
-            if delegate != nil && (delegate as! UIViewController).respondsToSelector("switchView:panRightEdge:") {
+            if delegate != nil && (delegate as! UIViewController).respondsToSelector(#selector(RGSwitchViewDelegate.switchView(_:panRightEdge:))) {
                 delegate?.switchView!(self, panRightEdge: panParam)
             }
         }
