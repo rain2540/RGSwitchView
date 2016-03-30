@@ -105,19 +105,19 @@ class RGSwitchView: UIView {
         }
     }
 
-    private lazy var rootScrollView = UIScrollView()    //  主视图
-    private lazy var topScrollView = UIScrollView()     //  顶部页签视图
-    private lazy var rightSideButton = UIButton()       //  右侧按钮
-    private lazy var leftSideButton = UIButton()        //  左侧按钮
+    private lazy var rootScrollView     =   UIScrollView()  //  主视图
+    private lazy var topScrollView      =   UIScrollView()  //  顶部页签视图
+    private lazy var rightSideButton    =   UIButton()      //  右侧按钮
+    private lazy var leftSideButton     =   UIButton()      //  左侧按钮
     
     private lazy var userContentOffsetX: CGFloat = 0.0
-    private lazy var isLeftScroll = false               //  是否左滑动
-    private lazy var isRootScroll = false               //  主视图是否滑动
-    private lazy var isBuildUI =    false               //  是否建立了UI
+    private lazy var isLeftScroll   =   false               //  是否左滑动
+    private lazy var isRootScroll   =   false               //  主视图是否滑动
+    private lazy var isBuildUI      =   false               //  是否建立了UI
     
-    private lazy var userSelectedChannelID = 100        //  点击按钮选择名字ID
+    private lazy var userSelectedChannelID = 100            //  点击按钮选择名字ID
     
-    private lazy var viewArray: [UIViewController] = [] //  主视图的子视图数组
+    private lazy var viewArray: [UIViewController] = []     //  主视图的子视图数组
     
     //  MARK: ＊＊ Methods ＊＊
     //  MARK: Lifecycle
