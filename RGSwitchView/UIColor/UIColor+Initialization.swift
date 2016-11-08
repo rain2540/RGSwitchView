@@ -35,20 +35,20 @@ extension UIColor {
         var red:   CGFloat = 0.0
         var green: CGFloat = 0.0
         var blue:  CGFloat = 0.0
-        
-        var cString = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
-        
+
+        var cString = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
+
         if cString.hasPrefix("0X") || cString.hasPrefix("#") {
             if cString.hasPrefix("0X") {
-                cString = cString.substringFromIndex(cString.startIndex.advancedBy(2))
+                cString = cString.substring(from: cString.characters.index(cString.startIndex, offsetBy: 2))
             } else if cString.hasPrefix("#") {
-                cString = cString.substringFromIndex(cString.startIndex.advancedBy(1))
+                cString = cString.substring(from: cString.characters.index(cString.startIndex, offsetBy: 1))
             }
             
-            let scanner = NSScanner(string: cString)
+            let scanner = Scanner(string: cString)
             var hexValue: CUnsignedLongLong = 0
             
-            if scanner.scanHexLongLong(&hexValue) {
+            if scanner.scanHexInt64(&hexValue) {
                 switch (cString.characters.count) {
                 case 3:
                     red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
