@@ -13,7 +13,7 @@ class DemoViewController: UIViewController {
     @IBOutlet weak var switchView: RGSwitchView!
     
     let sources = ["Tab_00", "Tab_01", "Tab_02", "Tab_03", "Tab_04", "Tab_05", "Tab_06", "Tab_07"]
-    private lazy var controllerArray = [UIViewController]()
+    fileprivate lazy var controllerArray = [UIViewController]()
     
     //  MARK: Methods
     //  MARK: Lifecycle
@@ -25,27 +25,27 @@ class DemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if respondsToSelector(Selector("edgesForExtendedLayout")) {
-            edgesForExtendedLayout = .None
+        if responds(to: #selector(getter: UIViewController.edgesForExtendedLayout)) {
+            edgesForExtendedLayout = UIRectEdge()
         }
         
         switchView.delegate = self
         self.title = "滑动切换视图"
         switchView.tabItemNormalColor = UIColor(hexString: "#868686", alpha: 1)
         switchView.tabItemSelectedColor = UIColor(hexString: "#bb0b15", alpha: 1)
-        switchView.shadowImage = UIImage(named: "red_line_and_shadow")!.stretchableImageWithLeftCapWidth(59, topCapHeight: 0)
+        switchView.shadowImage = UIImage(named: "red_line_and_shadow")!.stretchableImage(withLeftCapWidth: 59, topCapHeight: 0)
         
         for i in 0 ..< sources.count {
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("Detail VC") as! DetailViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Detail VC") as! DetailViewController
             vc.title = sources[i]
             controllerArray.append(vc)
         }
         
-        let rightButton = UIButton(type: .Custom)
-        rightButton.setImage(UIImage(named: "icon_rightarrow"), forState: .Normal)
-        rightButton.setImage(UIImage(named: "icon_rightarrow"), forState: .Highlighted)
+        let rightButton = UIButton(type: .custom)
+        rightButton.setImage(UIImage(named: "icon_rightarrow"), for: UIControlState())
+        rightButton.setImage(UIImage(named: "icon_rightarrow"), for: .highlighted)
         rightButton.frame = CGRect(x: 0, y: 0, width: 20, height: 44)
-        rightButton.userInteractionEnabled = false
+        rightButton.isUserInteractionEnabled = false
         switchView.rightTopButton = rightButton
         
 //        let leftButton = UIButton(type: .Custom)
@@ -61,15 +61,15 @@ class DemoViewController: UIViewController {
 
 //  MARK: - RGSwitchViewDelegate
 extension DemoViewController: RGSwitchViewDelegate {
-    func numberOfTab(view: RGSwitchView) -> Int {
+    func numberOfTab(_ view: RGSwitchView) -> Int {
         return sources.count
     }
     
-    func switchView(view: RGSwitchView, viewOfTab tabNumber: Int) -> UIViewController {
+    func switchView(_ view: RGSwitchView, viewOfTab tabNumber: Int) -> UIViewController {
         return controllerArray[tabNumber]
     }
     
-    func switchView(view: RGSwitchView, didSelectTab tabNumber: Int) {
+    func switchView(_ view: RGSwitchView, didSelectTab tabNumber: Int) {
         let vc = controllerArray[tabNumber] as! DetailViewController
         vc.viewDidCurrentView()
     }
