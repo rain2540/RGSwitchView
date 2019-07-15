@@ -40,16 +40,16 @@ extension UIColor {
 
         if cString.hasPrefix("0X") || cString.hasPrefix("#") {
             if cString.hasPrefix("0X") {
-                cString = cString.substring(from: cString.characters.index(cString.startIndex, offsetBy: 2))
+                cString = String(cString.suffix(from: cString.index(cString.startIndex, offsetBy: 2)))
             } else if cString.hasPrefix("#") {
-                cString = cString.substring(from: cString.characters.index(cString.startIndex, offsetBy: 1))
+                cString = String(cString.suffix(from: cString.index(cString.startIndex, offsetBy: 1)))
             }
             
             let scanner = Scanner(string: cString)
             var hexValue: CUnsignedLongLong = 0
             
             if scanner.scanHexInt64(&hexValue) {
-                switch (cString.characters.count) {
+                switch (cString.count) {
                 case 3:
                     red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                     green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
