@@ -139,7 +139,7 @@ class RGSwitchView: UIView {
         topScrollView.isPagingEnabled = false
         topScrollView.showsHorizontalScrollIndicator = false
         topScrollView.showsVerticalScrollIndicator = false
-        topScrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        topScrollView.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         addSubview(topScrollView)
         
         //  创建主滑动视图
@@ -247,7 +247,7 @@ class RGSwitchView: UIView {
             let button = UIButton(type: .custom)
             let textSize = viewController.title?.boundingRect(with: CGSize(width: topScrollView.bounds.width, height: kHeightOfTopScrollView),
                 options: .usesFontLeading,
-                attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: kFontSizeOfTabButton)],
+                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: kFontSizeOfTabButton)],
                 context: nil)
             if let textSize = textSize {
                 //  累计每个tab文字的长度
@@ -264,11 +264,11 @@ class RGSwitchView: UIView {
                 }
             }
             
-            button.setTitle(viewController.title, for: UIControlState())
+            button.setTitle(viewController.title, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: kFontSizeOfTabButton)
-            button.setTitleColor(tabItemNormalColor, for: UIControlState())
+            button.setTitleColor(tabItemNormalColor, for: .normal)
             button.setTitleColor(tabItemSelectedColor, for: .selected)
-            button.setBackgroundImage(tabItemNormalBackgroundImage, for: UIControlState())
+            button.setBackgroundImage(tabItemNormalBackgroundImage, for: .normal)
             button.setBackgroundImage(tabItemSelectedBackgroundImage, for: .selected)
             button.addTarget(self, action: #selector(RGSwitchView.selectNameButton(_:)), for: .touchUpInside)
             topScrollView.addSubview(button)
