@@ -42,7 +42,7 @@ class DemoViewController: UIViewController {
         }
         
         let rightButton = UIButton(type: .custom)
-        rightButton.setImage(UIImage(named: "icon_rightarrow"), for: UIControlState())
+        rightButton.setImage(UIImage(named: "icon_rightarrow"), for: .normal)
         rightButton.setImage(UIImage(named: "icon_rightarrow"), for: .highlighted)
         rightButton.frame = CGRect(x: 0, y: 0, width: 20, height: 44)
         rightButton.isUserInteractionEnabled = false
