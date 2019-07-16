@@ -351,6 +351,7 @@ class RGSwitchView: UIView {
     }
 }
 
+
 //  MARK: - Scroll View Delegate
 extension RGSwitchView: UIScrollViewDelegate {
     //  scrollView开始滑动
@@ -381,6 +382,7 @@ extension RGSwitchView: UIScrollViewDelegate {
 }
 
 
+// MARK: - Selector
 fileprivate extension Selector {
     static let scrollHandlePan = #selector(RGSwitchView.scrollHandlePan(_:))
 }
