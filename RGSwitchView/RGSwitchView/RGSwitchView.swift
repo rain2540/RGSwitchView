@@ -61,6 +61,7 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
     @objc optional func switchView(_ view: RGSwitchView, didSelectTab tabNumber: Int)
 }
 
+
 //  MARK: -
 class RGSwitchView: UIView {
     //  MARK: ＊＊ Properties ＊＊
@@ -270,7 +271,7 @@ class RGSwitchView: UIView {
             button.setTitleColor(tabItemSelectedColor, for: .selected)
             button.setBackgroundImage(tabItemNormalBackgroundImage, for: .normal)
             button.setBackgroundImage(tabItemSelectedBackgroundImage, for: .selected)
-            button.addTarget(self, action: #selector(RGSwitchView.selectNameButton(_:)), for: .touchUpInside)
+            button.addTarget(self, action: Selector.selectNameButton, for: .touchUpInside)
             topScrollView.addSubview(button)
         }
         
@@ -385,4 +386,5 @@ extension RGSwitchView: UIScrollViewDelegate {
 // MARK: - Selector
 fileprivate extension Selector {
     static let scrollHandlePan = #selector(RGSwitchView.scrollHandlePan(_:))
+    static let selectNameButton = #selector(RGSwitchView.selectNameButton(_:))
 }
