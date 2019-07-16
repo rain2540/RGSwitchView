@@ -64,7 +64,7 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
 
 //  MARK: -
 class RGSwitchView: UIView {
-    //  MARK: ＊＊ Properties ＊＊
+
     @IBOutlet weak var delegate: RGSwitchViewDelegate?
     
     lazy var shadowImageView = UIImageView()
@@ -120,8 +120,8 @@ class RGSwitchView: UIView {
     
     private lazy var viewArray: [UIViewController] = []     //  主视图的子视图数组
     
-    //  MARK: ＊＊ Methods ＊＊
-    //  MARK: Lifecycle
+
+    //  MARK: - Lifecycle
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initValues()
@@ -158,8 +158,7 @@ class RGSwitchView: UIView {
         
         viewArray = [UIViewController]()
     }
-    
-    //  MARK: Build Subviews
+
     override func layoutSubviews() {
         //  如果有设置右侧视图，缩小顶部滚动视图的宽度以适应按钮
         if isBuildUI {
@@ -205,7 +204,8 @@ class RGSwitchView: UIView {
             adjustScrollViewContentX(button)
         }
     }
-    
+
+    // MARK: - UI
     ///  创建子视图UI
     func buildUI() {
         let number = delegate?.numberOfTab(self)
