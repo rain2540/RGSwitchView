@@ -105,14 +105,14 @@ class RGSwitchView: UIView {
         }
     }
 
-    fileprivate lazy var rootScrollView     =   UIScrollView()  //  主视图
-    fileprivate lazy var topScrollView      =   UIScrollView()  //  顶部页签视图
+    private lazy var rootScrollView     =   UIScrollView()  //  主视图
+    private lazy var topScrollView      =   UIScrollView()  //  顶部页签视图
     private lazy var rightSideButton    =   UIButton()      //  右侧按钮
     private lazy var leftSideButton     =   UIButton()      //  左侧按钮
     
-    fileprivate lazy var userContentOffsetX: CGFloat = 0.0
-    fileprivate lazy var isLeftScroll   =   false               //  是否左滑动
-    fileprivate lazy var isRootScroll   =   false               //  主视图是否滑动
+    private lazy var userContentOffsetX: CGFloat = 0.0
+    private lazy var isLeftScroll   =   false               //  是否左滑动
+    private lazy var isRootScroll   =   false               //  主视图是否滑动
     private lazy var isBuildUI      =   false               //  是否建立了UI
     
     private lazy var userSelectedChannelID = 100            //  点击按钮选择名字ID
@@ -131,7 +131,7 @@ class RGSwitchView: UIView {
         initValues()
     }
 
-    fileprivate func initValues() {
+    private func initValues() {
         //  创建顶部可滑动的Tab
         topScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: kHeightOfTopScrollView))
         topScrollView.delegate = self
@@ -233,7 +233,7 @@ class RGSwitchView: UIView {
     }
     
     //  初始化顶部Tab的各个按钮
-    fileprivate func createNameButtons() {
+    private func createNameButtons() {
         shadowImageView = UIImageView()
         shadowImageView.image = shadowImage
         topScrollView.addSubview(shadowImageView)
@@ -323,7 +323,7 @@ class RGSwitchView: UIView {
     }
     
     //  调整顶部滑动视图x位置
-    fileprivate func adjustScrollViewContentX(_ sender: UIButton) {
+    private func adjustScrollViewContentX(_ sender: UIButton) {
         //  如果 当前显示的最后一个Tab文字超出右边界
         if sender.frame.origin.x - topScrollView.contentOffset.x > self.bounds.width - (kWidthOfButtonMargin + sender.bounds.width) {
             //  向左滑动视图 显示完整Tab文字
