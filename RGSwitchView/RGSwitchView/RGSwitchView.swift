@@ -152,7 +152,7 @@ class RGSwitchView: UIView {
         rootScrollView.showsHorizontalScrollIndicator = false
         rootScrollView.showsVerticalScrollIndicator = false
         rootScrollView.autoresizingMask = [.flexibleHeight, .flexibleBottomMargin, .flexibleWidth]
-        rootScrollView.panGestureRecognizer.addTarget(self, action: #selector(RGSwitchView.scrollHandlePan(_:)))
+        rootScrollView.panGestureRecognizer.addTarget(self, action: Selector.scrollHandlePan)
         addSubview(rootScrollView)
         
         viewArray = [UIViewController]()
@@ -378,4 +378,9 @@ extension RGSwitchView: UIScrollViewDelegate {
             selectNameButton(button)
         }
     }
+}
+
+
+fileprivate extension Selector {
+    static let scrollHandlePan = #selector(RGSwitchView.scrollHandlePan(_:))
 }
