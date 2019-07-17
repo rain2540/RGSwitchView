@@ -70,7 +70,7 @@ class RGSwitchView: UIView {
     lazy var shadowImageView = UIImageView()
     lazy var shadowImage = UIImage()
     
-    lazy var topScrollViewBackgroundColor = UIColor()       //  顶部滑动视图背景色
+    lazy var topScrollViewBackgroundColor = UIColor.white   //  顶部滑动视图背景色
     lazy var tabItemNormalColor = UIColor()                 //  正常时tab文字颜色
     lazy var tabItemSelectedColor = UIColor()               //  选中时tab文字颜色
     lazy var tabItemNormalBackgroundImage = UIImage()       //  正常时tab的背景
