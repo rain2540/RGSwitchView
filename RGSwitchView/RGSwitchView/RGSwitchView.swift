@@ -119,7 +119,7 @@ class RGSwitchView: UIView {
     private lazy var userSelectedChannelID = 100            //  点击按钮选择名字ID
     
     private lazy var viewArray: [UIViewController] = []     //  主视图的子视图数组
-    
+
 
     //  MARK: - Lifecycle
     required init?(coder aDecoder: NSCoder) {
@@ -144,8 +144,7 @@ class RGSwitchView: UIView {
         addSubview(topScrollView)
         
         //  创建主滑动视图
-        rootScrollView = UIScrollView(frame: CGRect(x: 0, y: kHeightOfTopScrollView,
-            width: self.bounds.width, height: self.bounds.height - kHeightOfTopScrollView))
+        rootScrollView = UIScrollView(frame: CGRect(x: 0, y: kHeightOfTopScrollView, width: self.bounds.width, height: self.bounds.height - kHeightOfTopScrollView))
         rootScrollView.delegate = self
         rootScrollView.isPagingEnabled = true
         rootScrollView.isUserInteractionEnabled = true
@@ -165,25 +164,25 @@ class RGSwitchView: UIView {
             topScrollView.backgroundColor = topScrollViewBackgroundColor
             if rightTopButton.bounds.width > 0 && leftTopButton.bounds.width == 0 {
                 rightTopButton.frame = CGRect(x: bounds.size.width - rightTopButton.bounds.width, y: 0,
-                    width: rightTopButton.bounds.width, height: topScrollView.bounds.height)
+                                              width: rightTopButton.bounds.width, height: topScrollView.bounds.height)
                 
                 topScrollView.frame = CGRect(x: 0, y: 0,
-                    width: bounds.size.width - rightTopButton.bounds.size.width, height: kHeightOfTopScrollView)
+                                             width: bounds.size.width - rightTopButton.bounds.size.width, height: kHeightOfTopScrollView)
             } else if leftTopButton.bounds.width > 0 && rightTopButton.bounds.width == 0 {
                 leftTopButton.frame = CGRect(x: kWidthOfLeftMargin, y: 0,
-                    width: leftTopButton.bounds.width, height: topScrollView.bounds.height)
+                                             width: leftTopButton.bounds.width, height: topScrollView.bounds.height)
                 
                 topScrollView.frame = CGRect(x: leftTopButton.frame.origin.x + leftTopButton.frame.size.width, y: 0,
-                    width: bounds.width - leftTopButton.bounds.width, height: kHeightOfTopScrollView)
+                                             width: bounds.width - leftTopButton.bounds.width, height: kHeightOfTopScrollView)
             } else if rightTopButton.bounds.width > 0 && leftTopButton.bounds.width > 0 {
                 leftTopButton.frame = CGRect(x: kWidthOfLeftMargin, y: 0,
-                    width: leftTopButton.bounds.width, height: topScrollView.bounds.height);
+                                             width: leftTopButton.bounds.width, height: topScrollView.bounds.height);
                 
                 rightTopButton.frame = CGRect(x: bounds.width - rightTopButton.bounds.width, y: 0,
-                    width: rightTopButton.bounds.width, height: topScrollView.bounds.height);
+                                              width: rightTopButton.bounds.width, height: topScrollView.bounds.height);
                 
                 topScrollView.frame = CGRect(x: leftTopButton.frame.origin.x + leftTopButton.frame.size.width, y: 0,
-                    width: bounds.width - leftTopButton.bounds.width - rightTopButton.bounds.width, height: kHeightOfTopScrollView);
+                                             width: bounds.width - leftTopButton.bounds.width - rightTopButton.bounds.width, height: kHeightOfTopScrollView);
             }
             
             // 更新主视图的总宽度
@@ -193,7 +192,7 @@ class RGSwitchView: UIView {
             for i in 0 ..< viewArray.count {
                 let listVC = viewArray[i]
                 listVC.view.frame = CGRect(x: 0 + rootScrollView.bounds.width * CGFloat(i), y: 0,
-                    width: rootScrollView.bounds.width, height: rootScrollView.bounds.height)
+                                           width: rootScrollView.bounds.width, height: rootScrollView.bounds.height)
             }
             
             //  滚动到选中的视图
@@ -204,6 +203,7 @@ class RGSwitchView: UIView {
             adjustScrollViewContentX(button)
         }
     }
+
 
     // MARK: - UI
     ///  创建子视图UI
@@ -247,9 +247,9 @@ class RGSwitchView: UIView {
             let viewController = viewArray[i]
             let button = UIButton(type: .custom)
             let textSize = viewController.title?.boundingRect(with: CGSize(width: topScrollView.bounds.width, height: kHeightOfTopScrollView),
-                options: .usesFontLeading,
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: kFontSizeOfTabButton)],
-                context: nil)
+                                                              options: .usesFontLeading,
+                                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: kFontSizeOfTabButton)],
+                                                              context: nil)
             if let textSize = textSize {
                 //  累计每个tab文字的长度
                 topScrollViewContentWidth += kWidthOfButtonMargin + textSize.width
@@ -278,8 +278,9 @@ class RGSwitchView: UIView {
         //  设置顶部滚动视图的内容总尺寸
         topScrollView.contentSize = CGSize(width: topScrollViewContentWidth, height: kHeightOfTopScrollView)
     }
-    
-    //  MARK: Top scrollView logic methods
+
+
+    //  MARK: - Event
     //  选中Tab事件
     @objc fileprivate func selectNameButton(_ sender: UIButton) {
         //  如果点击的Tab文字显示不全，调整滚动视图x坐标使用使Tab文字显示全
@@ -300,23 +301,23 @@ class RGSwitchView: UIView {
             
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 self.shadowImageView.frame = CGRect(x: sender.frame.origin.x, y: 0,
-                    width: sender.frame.size.width, height: self.shadowImage.size.height)
-                }, completion: { (finished) -> Void in
-                    if finished == true {
-                        //  设置新页面出现
-                        if self.isRootScroll == false {
-                            self.rootScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag - 100) * self.bounds.width, y: 0), animated: true)
-                        }
-                        self.isRootScroll = false
-                        
-                        if let delegate = self.delegate {
-                            if (delegate as! UIViewController).responds(to: #selector(RGSwitchViewDelegate.switchView(_:didSelectTab:))) {}
-                            delegate.switchView?(self, didSelectTab: self.userSelectedChannelID - 100)
-                        } else {
-                            print("delegate in RGSwitchView is nil", terminator: "")
-                        }
-                        
+                                                    width: sender.frame.size.width, height: self.shadowImage.size.height)
+            }, completion: { (finished) -> Void in
+                if finished == true {
+                    //  设置新页面出现
+                    if self.isRootScroll == false {
+                        self.rootScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag - 100) * self.bounds.width, y: 0), animated: true)
                     }
+                    self.isRootScroll = false
+
+                    if let delegate = self.delegate {
+                        if (delegate as! UIViewController).responds(to: #selector(RGSwitchViewDelegate.switchView(_:didSelectTab:))) {}
+                        delegate.switchView?(self, didSelectTab: self.userSelectedChannelID - 100)
+                    } else {
+                        print("delegate in RGSwitchView is nil", terminator: "")
+                    }
+
+                }
             })
         } else {    //  重复点击选中按钮
             
@@ -337,8 +338,7 @@ class RGSwitchView: UIView {
             topScrollView.setContentOffset(CGPoint(x: sender.frame.origin.x - kWidthOfButtonMargin, y: 0), animated: true)
         }
     }
-    
-    //  MARK: Main view logic method
+
     @objc fileprivate func scrollHandlePan(_ panParam: UIPanGestureRecognizer) {
         if rootScrollView.contentOffset.x <= 0 {
             if delegate != nil && (delegate as! UIViewController).responds(to: #selector(RGSwitchViewDelegate.switchView(_:panLeftEdge:))) {
