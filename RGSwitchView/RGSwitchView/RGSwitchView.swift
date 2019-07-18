@@ -134,7 +134,8 @@ class RGSwitchView: UIView {
 
     private func initValues() {
         //  创建顶部可滑动的Tab
-        topScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: kHeightOfTopScrollView))
+        let topFrame = CGRect(x: 0, y: 0, width: self.bounds.width, height: kHeightOfTopScrollView)
+        topScrollView = UIScrollView(frame: topFrame)
         topScrollView.delegate = self
         topScrollView.backgroundColor = UIColor.clear
         topScrollView.isPagingEnabled = false
@@ -144,7 +145,8 @@ class RGSwitchView: UIView {
         addSubview(topScrollView)
         
         //  创建主滑动视图
-        rootScrollView = UIScrollView(frame: CGRect(x: 0, y: kHeightOfTopScrollView, width: self.bounds.width, height: self.bounds.height - kHeightOfTopScrollView))
+        let rootFrame = CGRect(x: 0, y: kHeightOfTopScrollView, width: self.bounds.width, height: self.bounds.height - kHeightOfTopScrollView)
+        rootScrollView = UIScrollView(frame: rootFrame)
         rootScrollView.delegate = self
         rootScrollView.isPagingEnabled = true
         rootScrollView.isUserInteractionEnabled = true
