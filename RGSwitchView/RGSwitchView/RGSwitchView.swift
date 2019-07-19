@@ -312,13 +312,7 @@ class RGSwitchView: UIView {
                     }
                     self.isRootScroll = false
 
-                    if let delegate = self.delegate {
-                        if (delegate as! UIViewController).responds(to: #selector(RGSwitchViewDelegate.switchView(_:didSelectTab:))) {}
-                        delegate.switchView?(self, didSelectTab: self.userSelectedChannelID - 100)
-                    } else {
-                        print("delegate in RGSwitchView is nil", terminator: "")
-                    }
-
+                    self.delegate?.switchView?(self, didSelectTab: self.userSelectedChannelID - 100)
                 }
             })
         } else {    //  重复点击选中按钮
@@ -343,13 +337,9 @@ class RGSwitchView: UIView {
 
     @objc fileprivate func scrollHandlePan(_ panParam: UIPanGestureRecognizer) {
         if rootScrollView.contentOffset.x <= 0 {
-            if delegate != nil && (delegate as! UIViewController).responds(to: #selector(RGSwitchViewDelegate.switchView(_:panLeftEdge:))) {
-                delegate?.switchView!(self, panLeftEdge: panParam)
-            }
+            delegate?.switchView!(self, panLeftEdge: panParam)
         } else if rootScrollView.contentOffset.x >= rootScrollView.contentSize.width - rootScrollView.bounds.width {
-            if delegate != nil && (delegate as! UIViewController).responds(to: #selector(RGSwitchViewDelegate.switchView(_:panRightEdge:))) {
-                delegate?.switchView!(self, panRightEdge: panParam)
-            }
+            delegate?.switchView!(self, panRightEdge: panParam)
         }
     }
 }
