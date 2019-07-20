@@ -22,14 +22,9 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
     /// - Parameter view: Switch View
     func numberOfTab(_ view: RGSwitchView) -> Int
     
-    /**
-     每个Tab所对应的ViewController
-     
-     - parameter view:      本控件
-     - parameter tabNumber: Tab索引
-     
-     - returns: 每个Tab对应的ViewController
-     */
+    /// 每个 Tab 所对应的 View Controller
+    /// - Parameter view: Switch View
+    /// - Parameter tabNumber: Tab索引
     func switchView(_ view: RGSwitchView, viewOfTab tabNumber: Int) -> UIViewController
     
     /**
