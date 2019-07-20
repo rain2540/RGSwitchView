@@ -17,13 +17,9 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
 
 //  MARK: RGSwitchViewDelegate
 @objc protocol RGSwitchViewDelegate {
-    /**
-     顶部Tab个数
-     
-     - parameter view: 本控件
-     
-     - returns: Tab个数
-     */
+    
+    /// Switch View  顶部 Tab 个数
+    /// - Parameter view: Switch View
     func numberOfTab(_ view: RGSwitchView) -> Int
     
     /**
@@ -59,6 +55,7 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
      - parameter tabNumber: Tab索引
      */
     @objc optional func switchView(_ view: RGSwitchView, didSelectTab tabNumber: Int)
+    
 }
 
 
