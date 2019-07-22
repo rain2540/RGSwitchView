@@ -35,13 +35,10 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
      - returns: 每个Tab对应的ViewController
      */
     func switchView(_ view: RGSwitchView, viewOfTab tabNumber: Int) -> UIViewController
-    
-    /**
-     滑动左边界时传递手势
-     
-     - parameter view:        本控件
-     - parameter panLeftEdge: 手势
-     */
+
+    /// 滑动左边界时传递手势
+    ///   - Parameters: view: Switch View
+    ///   - Parameters: panLeftEdge: 滑动左边界时传递的手势
     @objc optional func switchView(_ view: RGSwitchView, panLeftEdge: UIPanGestureRecognizer)
     
     /**
