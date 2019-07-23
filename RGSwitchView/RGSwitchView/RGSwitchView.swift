@@ -24,7 +24,7 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
     
     /// 每个 Tab 所对应的 View Controller
     /// - Parameter view: Switch View
-    /// - Parameter tabNumber: Tab索引
+    /// - Parameter tabNumber: Tab 索引
     func switchView(_ view: RGSwitchView, viewOfTab tabNumber: Int) -> UIViewController
 
     /// 滑动左边界时传递手势
@@ -37,13 +37,10 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
      /// - parameter view: Switch View
      /// - parameter panRightEdge: 滑动右边界时传递的手势
     @objc optional func switchView(_ view: RGSwitchView, panRightEdge: UIPanGestureRecognizer)
-    
-    /**
-     点击Tab
-     
-     - parameter view:      本控件
-     - parameter tabNumber: Tab索引
-     */
+
+     /// 点击Tab
+     /// - parameter view: Switch View
+     /// - parameter tabNumber: Tab 索引
     @objc optional func switchView(_ view: RGSwitchView, didSelectTab tabNumber: Int)
     
 }
