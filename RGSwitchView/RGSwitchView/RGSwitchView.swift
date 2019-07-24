@@ -15,7 +15,7 @@ private let kWidthOfButtonMargin: CGFloat = 16.0
 private let kFontSizeOfTabButton: CGFloat = 17.0
 private let kWidthOfLeftMargin: CGFloat = 8.0
 
-//  MARK: RGSwitchViewDelegate
+// MARK: RGSwitchViewDelegate
 @objc protocol RGSwitchViewDelegate {
     
     /// Switch View  顶部 Tab 个数
@@ -46,7 +46,7 @@ private let kWidthOfLeftMargin: CGFloat = 8.0
 }
 
 
-//  MARK: -
+// MARK: -
 class RGSwitchView: UIView {
 
     @IBOutlet weak var delegate: RGSwitchViewDelegate?
@@ -54,11 +54,11 @@ class RGSwitchView: UIView {
     lazy var shadowImageView = UIImageView()
     lazy var shadowImage = UIImage()
     
-    lazy var topScrollViewBackgroundColor = UIColor.white   //  顶部滑动视图背景色
-    lazy var tabItemNormalColor = UIColor()                 //  正常时tab文字颜色
-    lazy var tabItemSelectedColor = UIColor()               //  选中时tab文字颜色
-    lazy var tabItemNormalBackgroundImage = UIImage()       //  正常时tab的背景
-    lazy var tabItemSelectedBackgroundImage = UIImage()     //  选中时tab的背景
+    lazy var topScrollViewBackgroundColor = UIColor.white   // 顶部滑动视图背景色
+    lazy var tabItemNormalColor = UIColor()                 // 正常时tab文字颜色
+    lazy var tabItemSelectedColor = UIColor()               // 选中时tab文字颜色
+    lazy var tabItemNormalBackgroundImage = UIImage()       // 正常时tab的背景
+    lazy var tabItemSelectedBackgroundImage = UIImage()     // 选中时tab的背景
     
     var rightTopButton: UIButton {
         get {
@@ -90,22 +90,22 @@ class RGSwitchView: UIView {
         }
     }
 
-    private lazy var rootScrollView     =   UIScrollView()  //  主视图
-    private lazy var topScrollView      =   UIScrollView()  //  顶部页签视图
-    private lazy var rightSideButton    =   UIButton()      //  右侧按钮
-    private lazy var leftSideButton     =   UIButton()      //  左侧按钮
+    private lazy var rootScrollView     =   UIScrollView()  // 主视图
+    private lazy var topScrollView      =   UIScrollView()  // 顶部页签视图
+    private lazy var rightSideButton    =   UIButton()      // 右侧按钮
+    private lazy var leftSideButton     =   UIButton()      // 左侧按钮
     
     private lazy var userContentOffsetX: CGFloat = 0.0
-    private lazy var isLeftScroll   =   false               //  是否左滑动
-    private lazy var isRootScroll   =   false               //  主视图是否滑动
-    private lazy var isBuildUI      =   false               //  是否建立了UI
+    private lazy var isLeftScroll   =   false               // 是否左滑动
+    private lazy var isRootScroll   =   false               // 主视图是否滑动
+    private lazy var isBuildUI      =   false               // 是否建立了UI
     
-    private lazy var userSelectedChannelID = 100            //  点击按钮选择名字ID
+    private lazy var userSelectedChannelID = 100            // 点击按钮选择名字ID
     
-    private lazy var viewArray: [UIViewController] = []     //  主视图的子视图数组
+    private lazy var viewArray: [UIViewController] = []     // 主视图的子视图数组
 
 
-    //  MARK: - Lifecycle
+    // MARK: - Lifecycle
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initValues()
@@ -117,7 +117,7 @@ class RGSwitchView: UIView {
     }
 
     private func initValues() {
-        //  创建顶部可滑动的Tab
+        // 创建顶部可滑动的Tab
         let topFrame = CGRect(x: 0, y: 0, width: self.bounds.width, height: kHeightOfTopScrollView)
         topScrollView = UIScrollView(frame: topFrame)
         topScrollView.delegate = self
@@ -128,7 +128,7 @@ class RGSwitchView: UIView {
         topScrollView.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         addSubview(topScrollView)
         
-        //  创建主滑动视图
+        // 创建主滑动视图
         let rootFrame = CGRect(x: 0, y: kHeightOfTopScrollView, width: self.bounds.width, height: self.bounds.height - kHeightOfTopScrollView)
         rootScrollView = UIScrollView(frame: rootFrame)
         rootScrollView.delegate = self
@@ -145,7 +145,7 @@ class RGSwitchView: UIView {
     }
 
     override func layoutSubviews() {
-        //  如果有设置右侧视图，缩小顶部滚动视图的宽度以适应按钮
+        // 如果有设置右侧视图，缩小顶部滚动视图的宽度以适应按钮
         if isBuildUI {
             topScrollView.backgroundColor = topScrollViewBackgroundColor
             if rightTopButton.bounds.width > 0 && leftTopButton.bounds.width == 0 {
@@ -174,17 +174,17 @@ class RGSwitchView: UIView {
             // 更新主视图的总宽度
             rootScrollView.contentSize = CGSize(width: self.bounds.width * CGFloat(viewArray.count), height: 0)
             
-            //  更新主视图各个子视图的宽度
+            // 更新主视图各个子视图的宽度
             for i in 0 ..< viewArray.count {
                 let listVC = viewArray[i]
                 listVC.view.frame = CGRect(x: 0 + rootScrollView.bounds.width * CGFloat(i), y: 0,
                                            width: rootScrollView.bounds.width, height: rootScrollView.bounds.height)
             }
             
-            //  滚动到选中的视图
+            // 滚动到选中的视图
             rootScrollView.setContentOffset(CGPoint(x: CGFloat(userSelectedChannelID - 100) * bounds.width, y: 0), animated: false)
             
-            //  调整顶部滚动视图选中按钮位置
+            // 调整顶部滚动视图选中按钮位置
             let button = topScrollView.viewWithTag(userSelectedChannelID) as! UIButton
             adjustScrollViewContentX(button)
         }
@@ -192,7 +192,7 @@ class RGSwitchView: UIView {
 
 
     // MARK: - UI
-    ///  创建子视图UI
+    /// 创建子视图UI
     func buildUI() {
         let number = delegate?.numberOfTab(self)
         if let number = number {
@@ -206,7 +206,7 @@ class RGSwitchView: UIView {
         }
         createNameButtons()
         
-        //  选中第一个View
+        // 选中第一个View
         if let delegate = delegate {
             delegate.switchView?(self, didSelectTab: userSelectedChannelID - 100)
         } else {
@@ -215,19 +215,19 @@ class RGSwitchView: UIView {
         
         isBuildUI = true
         
-        //  创建完子视图UI才需要调整布局
+        // 创建完子视图UI才需要调整布局
         self.setNeedsLayout()
     }
     
-    //  初始化顶部Tab的各个按钮
+    // 初始化顶部Tab的各个按钮
     private func createNameButtons() {
         shadowImageView = UIImageView()
         shadowImageView.image = shadowImage
         topScrollView.addSubview(shadowImageView)
         
-        //  顶部 Tab Bar 的总长度
+        // 顶部 Tab Bar 的总长度
         var topScrollViewContentWidth = kWidthOfButtonMargin
-        //  每个Tab偏移量
+        // 每个Tab偏移量
         var xOffset = kWidthOfButtonMargin
         for i in 0 ..< viewArray.count {
             let viewController = viewArray[i]
@@ -237,11 +237,11 @@ class RGSwitchView: UIView {
                                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: kFontSizeOfTabButton)],
                                                               context: nil)
             if let textSize = textSize {
-                //  累计每个tab文字的长度
+                // 累计每个tab文字的长度
                 topScrollViewContentWidth += kWidthOfButtonMargin + textSize.width
-                //  设置按钮尺寸
+                // 设置按钮尺寸
                 button.frame = CGRect(x: xOffset, y: 0, width: textSize.width, height: kHeightOfTopScrollView)
-                //  计算下一个Tab的x偏移量
+                // 计算下一个Tab的x偏移量
                 xOffset += textSize.width + kWidthOfButtonMargin
                 button.isSelected = false
                 button.tag = i + 100
@@ -261,27 +261,27 @@ class RGSwitchView: UIView {
             topScrollView.addSubview(button)
         }
         
-        //  设置顶部滚动视图的内容总尺寸
+        // 设置顶部滚动视图的内容总尺寸
         topScrollView.contentSize = CGSize(width: topScrollViewContentWidth, height: kHeightOfTopScrollView)
     }
 
 
-    //  MARK: - Event
-    //  选中Tab事件
+    // MARK: - Event
+    // 选中Tab事件
     @objc fileprivate func selectNameButton(_ sender: UIButton) {
-        //  如果点击的Tab文字显示不全，调整滚动视图x坐标使用使Tab文字显示全
+        // 如果点击的Tab文字显示不全，调整滚动视图x坐标使用使Tab文字显示全
         adjustScrollViewContentX(sender)
         
-        //  如果更换按钮
+        // 如果更换按钮
         if sender.tag != userSelectedChannelID {
-            //  取之前的按钮
+            // 取之前的按钮
             let lastButton = topScrollView.viewWithTag(userSelectedChannelID) as! UIButton
             lastButton.isSelected = false
-            //  赋值按钮ID
+            // 赋值按钮ID
             userSelectedChannelID = sender.tag
         }
         
-        //  按钮选中状态
+        // 按钮选中状态
         if sender.isSelected == false {
             sender.isSelected = true
             
@@ -290,7 +290,7 @@ class RGSwitchView: UIView {
                                                     width: sender.frame.size.width, height: self.shadowImage.size.height)
             }, completion: { (finished) -> Void in
                 if finished == true {
-                    //  设置新页面出现
+                    // 设置新页面出现
                     if self.isRootScroll == false {
                         self.rootScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag - 100) * self.bounds.width, y: 0), animated: true)
                     }
@@ -299,22 +299,22 @@ class RGSwitchView: UIView {
                     self.delegate?.switchView?(self, didSelectTab: self.userSelectedChannelID - 100)
                 }
             })
-        } else {    //  重复点击选中按钮
+        } else {    // 重复点击选中按钮
             
         }
     }
     
-    //  调整顶部滑动视图x位置
+    // 调整顶部滑动视图x位置
     private func adjustScrollViewContentX(_ sender: UIButton) {
-        //  如果 当前显示的最后一个Tab文字超出右边界
+        // 如果 当前显示的最后一个Tab文字超出右边界
         if sender.frame.origin.x - topScrollView.contentOffset.x > self.bounds.width - (kWidthOfButtonMargin + sender.bounds.width) {
-            //  向左滑动视图 显示完整Tab文字
+            // 向左滑动视图 显示完整Tab文字
             topScrollView.setContentOffset(CGPoint(x: sender.frame.origin.x - (topScrollView.bounds.width - (kWidthOfButtonMargin + sender.bounds.width)), y: 0), animated: true)
         }
         
-        //  如果 (Tab的文字坐标 - 当前滚动视图左边界所在整个视图的x坐标) < 按钮的隔间 ，代表Tab文字已超出边界
+        // 如果 (Tab的文字坐标 - 当前滚动视图左边界所在整个视图的x坐标) < 按钮的隔间 ，代表Tab文字已超出边界
         if sender.frame.origin.x - topScrollView.contentOffset.x < kWidthOfButtonMargin {
-            //  向右滚动视图(Tab文字的x坐标 - 按钮间隔 = 新的滚动视图左边界在整个视图的x坐标) 使文字显示完整
+            // 向右滚动视图(Tab文字的x坐标 - 按钮间隔 = 新的滚动视图左边界在整个视图的x坐标) 使文字显示完整
             topScrollView.setContentOffset(CGPoint(x: sender.frame.origin.x - kWidthOfButtonMargin, y: 0), animated: true)
         }
     }
@@ -329,28 +329,28 @@ class RGSwitchView: UIView {
 }
 
 
-//  MARK: - Scroll View Delegate
+// MARK: - Scroll View Delegate
 extension RGSwitchView: UIScrollViewDelegate {
-    //  scrollView开始滑动
+    // scrollView开始滑动
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView == rootScrollView {
             userContentOffsetX = scrollView.contentOffset.x
         }
     }
     
-    //  scrollView结束滑动
+    // scrollView结束滑动
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == rootScrollView {
-            //  判断用户是左滑动还是右滑动
+            // 判断用户是左滑动还是右滑动
             isLeftScroll = userContentOffsetX < scrollView.contentOffset.x ? true : false
         }
     }
     
-    //  scrollView释放滑动
+    // scrollView释放滑动
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == rootScrollView {
             isRootScroll = true
-            //  调整顶部滑动按钮的状态
+            // 调整顶部滑动按钮的状态
             let tag = Int(scrollView.contentOffset.x / self.bounds.width) + 100
             let button = topScrollView.viewWithTag(tag) as! UIButton
             selectNameButton(button)
